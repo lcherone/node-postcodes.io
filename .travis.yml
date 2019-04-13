@@ -1,10 +1,11 @@
 language: node_js
+node_js:
+  - "stable"
 sudo: false
 cache:
   directories:
     - "node_modules"
 before_install:
-  - nvm install stable
   - npm i -g standard
   - npm i -g mocha
 install:
