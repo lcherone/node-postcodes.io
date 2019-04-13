@@ -4,6 +4,7 @@ cache:
   directories:
     - "node_modules"
 before_install:
+  - nvm install stable
   - npm i -g standard
   - npm i -g mocha
 install:
