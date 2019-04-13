@@ -1,17 +1,19 @@
 process.env.DEBUG = 'node-postcodes.io:*'
 
 /* eslint-disable */
+//
 const debug = require('debug')('node-postcodes.io:tests')
 const assert = require('assert')
 const should = require('should')
+//
 const postcodes = require('../src/index.js')
-/* eslint-enable */
-
+//
 const delay = interval => {
   return it('💕 sleeping for ' + interval / 1000 + 's', done => {
     setTimeout(done, interval)
   }).timeout(interval + 100)
 }
+/* eslint-enable */
 
 /**
  * Tests
@@ -20,7 +22,7 @@ const delay = interval => {
 describe('node-postcodes.io', function () {
   describe('lookup', function () {
     it('valid postcode, expecting status 200', async () => {
-      var result = await postcodes.lookup('PO123AB')
+      var result = await postcodes.lookup('PO123AA')
       // debug(result)
 
       result.should.have.property('status', 200)
