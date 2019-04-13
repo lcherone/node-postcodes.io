@@ -1,0 +1,25 @@
+{
+    "name": "node-postcodes.io",
+    "version": "0.0.1",
+    "description": "",
+    "main": "src/index.js",
+    "scripts": {
+        "test": "standard --fix && standard && cd test && ../node_modules/mocha/bin/mocha --exit --check-leaks --slow 500ms"
+    },
+    "author": "",
+    "license": "MIT",
+    "standard": {
+        "env": [
+            "mocha"
+        ]
+    },
+    "dependencies": {
+        "axios": "^0.18.0",
+        "debug": "^3.1.0"
+    },
+    "devDependencies": {
+        "mocha": "^5.1.1",
+        "should": "^13.2.3",
+        "standard": "^11.0.1"
+    }
+}
