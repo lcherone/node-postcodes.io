@@ -22,13 +22,13 @@ const postcodes = require('node-postcodes.io')
 
 ``` javascript
 // single
-var result = await postcodes.lookup('PO123AA')
+let result = await postcodes.lookup('PO123AA')
 
 // batch
-var result = await postcodes.lookup(['PO123AA', 'PO123AB'])
+let result = await postcodes.lookup(['PO123AA', 'PO123AB'])
 
 // batch (with filter)
-var result = await postcodes.lookup(['PO123AA', 'PO123AB'], {
+let result = await postcodes.lookup(['PO123AA', 'PO123AB'], {
     filter: 'postcode,longitude,latitude'
 })
 ```
@@ -39,10 +39,10 @@ var result = await postcodes.lookup(['PO123AA', 'PO123AB'], {
 
 ``` javascript
 //
-var result = await postcodes.geo(51.7923246977375,  0.629834723775309)
+let result = await postcodes.geo(51.7923246977375,  0.629834723775309)
 
 // with optional params
-var result = await postcodes.geo(51.7923246977375,  0.629834723775309, {
+let result = await postcodes.geo(51.7923246977375,  0.629834723775309, {
     limit: 10,
     radius: 10,
     wideSearch: false
@@ -53,7 +53,7 @@ var result = await postcodes.geo(51.7923246977375,  0.629834723775309, {
 
 ``` javascript
 //
-var result = await postcodes.geo([
+let result = await postcodes.geo([
     {
         "longitude": 0.629834723775309,
         "latitude": 51.7923246977375,
@@ -68,7 +68,7 @@ var result = await postcodes.geo([
 ])
 
 // with optional params
-var result = await postcodes.geo([
+let result = await postcodes.geo([
     {
         "longitude": 0.629834723775309,
         "latitude": 51.7923246977375,
@@ -89,22 +89,22 @@ var result = await postcodes.geo([
 ### Random
 
 ``` javascript
-var result = await postcodes.random()
+let result = await postcodes.random()
 ```
 
 ### Validate
 
 ``` javascript
-var result = await postcodes.validate('PO123AA')
+let result = await postcodes.validate('PO123AA')
 ```
 
 ### Nearest
 
 ``` javascript
-var result = await postcodes.nearest('PO123AA')
+let result = await postcodes.nearest('PO123AA')
 
 // with optional params
-var result = await postcodes.nearest('PO123AA', {
+let result = await postcodes.nearest('PO123AA', {
     radius: 1000,
     limit: 5
 })
@@ -113,10 +113,10 @@ var result = await postcodes.nearest('PO123AA', {
 ### Autocomplete
 
 ``` javascript
-var result = await postcodes.autocomplete('PO123AA')
+let result = await postcodes.autocomplete('PO123AA')
 
 // with optional params
-var result = await postcodes.autocomplete('PO123AA', {
+let result = await postcodes.autocomplete('PO123AA', {
     limit: 5
 })
 ```
@@ -124,10 +124,10 @@ var result = await postcodes.autocomplete('PO123AA', {
 ### Query
 
 ``` javascript
-var result = await postcodes.query('PO123AA')
+let result = await postcodes.query('PO123AA')
 
 // with optional params
-var result = await postcodes.query('PO123AA', {
+let result = await postcodes.query('PO123AA', {
     limit: 5
 })
 ```
@@ -135,19 +135,19 @@ var result = await postcodes.query('PO123AA', {
 ### Terminated
 
 ``` javascript
-var result = await postcodes.terminated('PO123AA')
+let result = await postcodes.terminated('PO123AA')
 ```
 
 ### Outcodes
 
 ``` javascript
 // lookup
-var result = await postcodes.outcodes('PO33')
+let result = await postcodes.outcodes('PO33')
 ```
 
 ``` javascript
 // nearest
-var result = await postcodes.outcodes('PO3', {
+let result = await postcodes.outcodes('PO3', {
     limit: 10,
     radius: 10
 })
@@ -155,10 +155,10 @@ var result = await postcodes.outcodes('PO3', {
 
 ``` javascript
 // nearest (lat, lng)
-var result = await postcodes.outcodes(51.7923246977375,  0.629834723775309)
+let result = await postcodes.outcodes(51.7923246977375,  0.629834723775309)
 
 // with optional params
-var result = await postcodes.outcodes(51.7923246977375,  0.629834723775309, {
+let result = await postcodes.outcodes(51.7923246977375,  0.629834723775309, {
     limit: 10,
     radius: 10
 })
@@ -168,13 +168,13 @@ var result = await postcodes.outcodes(51.7923246977375,  0.629834723775309, {
 
 ``` javascript
 // lookup
-var result = await postcodes.place('osgb4000000074553605')
+let result = await postcodes.place('osgb4000000074553605')
 
 // query
-var result = await postcodes.place('Ryde', true)
+let result = await postcodes.place('Ryde', true)
 
 // random
-var result = await postcodes.place()
+let result = await postcodes.place()
 ```
 
 
