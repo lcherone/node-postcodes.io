@@ -41,7 +41,7 @@ describe('node-postcodes.io', function () {
 
     delay(2500)
 
-    it('valid batch of postcodes, expecting status 200', async () => {
+    it('valid batch of postcodes (without filter), expecting status 200', async () => {
       var result = await postcodes.lookup(['PO123AA', 'PO123AB'])
       // debug(result)
       result.should.have.property('status', 200)
@@ -49,7 +49,7 @@ describe('node-postcodes.io', function () {
 
     delay(2500)
 
-    it('valid batch of postcodes with filter, expecting status 200', async () => {
+    it('valid batch of postcodes (with filter), expecting status 200', async () => {
       var result = await postcodes.lookup(['PO123AA', 'PO123AB'], {
         filter: 'postcode,longitude,latitude'
       })
@@ -64,7 +64,7 @@ describe('node-postcodes.io', function () {
    */
   describe('geo()', function () {
     // describe('single', function () {
-    // it('find without filter, expecting status 200', async () => {
+    // it('find (without filter), expecting status 200', async () => {
     //   let result = await postcodes.geo(51.7923246977375, 0.629834723775309)
     //   debug(result)
     //   result.should.have.property('status', 200)
@@ -72,7 +72,7 @@ describe('node-postcodes.io', function () {
 
     // delay(2500)
 
-    // it('find with filter, expecting status 200', async () => {
+    // it('find (with filter), expecting status 200', async () => {
     //   let result = await postcodes.geo(51.7923246977375, 0.629834723775309, {
     //     limit: 10,
     //     radius: 10,
@@ -86,7 +86,7 @@ describe('node-postcodes.io', function () {
     // })
 
     describe('batch', function () {
-      // it('find without filter, expecting status 200', async () => {
+      // it('find (without filter), expecting status 200', async () => {
       //   let result = await postcodes.geo([{
       //     'longitude': 0.629834723775309,
       //     'latitude': 51.7923246977375,
@@ -104,7 +104,7 @@ describe('node-postcodes.io', function () {
 
       // delay(2500)
 
-      // it('find with filter, expecting status 200', async () => {
+      // it('find (with filter), expecting status 200', async () => {
       //   let result = await postcodes.geo([{
       //     'longitude': 0.629834723775309,
       //     'latitude': 51.7923246977375,
@@ -125,5 +125,89 @@ describe('node-postcodes.io', function () {
 
       // delay(2500)
     })
+  })
+
+  // /**
+  //  * random
+  //  */
+  // describe('random()', function () {
+  //   it('find (without filter), expecting status 200', async () => {
+  //     let result = await postcodes.random()
+  //     debug(result)
+  //     result.should.have.property('status', 200)
+  //   })
+
+  //   delay(2500)
+  // })
+
+  // /**
+  //  * validate
+  //  */
+  // describe('validate()', function () {
+  //   // it('valid, expecting status 200, result true', async () => {
+  //   //   let result = await postcodes.validate('po333jf')
+  //   //   debug(result)
+  //   //   result.should.have.property('status', 200)
+  //   //   result.should.have.property('result', true)
+  //   // })
+
+  //   // delay(2500)
+
+  //   it('invalid, expecting status 200, result false', async () => {
+  //     let result = await postcodes.validate('po33f')
+  //     debug(result)
+  //     result.should.have.property('status', 200)
+  //     result.should.have.property('result', false)
+  //   })
+
+  //   delay(2500)
+  // })
+
+  // /**
+  //  * nearest
+  //  */
+  // describe('nearest()', function () {
+  //   // it('find (without filter), expecting status 200', async () => {
+  //   //   let result = await postcodes.nearest('PO123AA')
+  //   //   debug(result)
+  //   //   result.should.have.property('status', 200)
+  //   // })
+
+  //   // delay(2500)
+
+  //   it('valid, expecting status 200', async () => {
+  //     let result = await postcodes.nearest('PO123AA', {
+  //       radius: 1000,
+  //       limit: 5
+  //     })
+  //     debug(result)
+  //     result.should.have.property('status', 200)
+  //   })
+
+  //   delay(2500)
+  // })
+
+  /**
+   * autocomplete
+   */
+  describe('autocomplete()', function () {
+    // it('find (without filter), expecting status 200', async () => {
+    //   let result = await postcodes.autocomplete('PO123AA')
+    //   debug(result)
+    //   result.should.have.property('status', 200)
+    // })
+
+    // delay(2500)
+
+    it('valid, expecting status 200', async () => {
+      let result = await postcodes.autocomplete('PO123AA', {
+        radius: 1000,
+        limit: 5
+      })
+      debug(result)
+      result.should.have.property('status', 200)
+    })
+
+    delay(2500)
   })
 })

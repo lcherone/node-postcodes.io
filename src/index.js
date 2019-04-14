@@ -28,7 +28,7 @@ class PostcodesIO {
   /**
    *
    */
-  constructor () {
+  constructor() {
     this.endpoint = 'https://api.postcodes.io'
 
     this.baseRequest = {
@@ -54,7 +54,7 @@ class PostcodesIO {
   /**
    *
    */
-  async lookup () {
+  async lookup() {
     let postcode
     let params = {}
 
@@ -112,11 +112,7 @@ class PostcodesIO {
   /**
    *
    */
-  async geo () {
-    /* eslint-disable */
-    let params = {}
-    /* eslint-enable */
-
+  async geo() {
     switch (arguments.length) {
       case 0:
         return Promise.reject(
@@ -132,12 +128,12 @@ class PostcodesIO {
             )
           )
         }
+        debug('Geo: ' + this.endpoint + '/postcodes', arguments)
         let {
           data
         } = await await axios({
           ...this.basePostRequest,
           url: this.endpoint + '/postcodes',
-          params: params,
           data: {
             geolocations: arguments[0]
           }
@@ -145,6 +141,7 @@ class PostcodesIO {
         return data
       case 2:
         if (typeof arguments[0] === 'number' && typeof arguments[1] === 'number') {
+          debug('Geo: ' + this.endpoint + '/postcodes', arguments)
           let {
             data
           } = await await axios({
@@ -157,6 +154,7 @@ class PostcodesIO {
           })
           return data
         } else if (Array.isArray(arguments[0]) && typeof arguments[1] === 'object') {
+          debug('Geo: ' + this.endpoint + '/postcodes', arguments)
           let {
             data
           } = await await axios({
@@ -177,6 +175,7 @@ class PostcodesIO {
         }
       case 3:
         if (typeof arguments[0] === 'number' && typeof arguments[1] === 'number' && (typeof arguments[2] === 'object' && !Array.isArray(arguments[2]))) {
+          debug('Geo: ' + this.endpoint + '/postcodes', arguments)
           let {
             data
           } = await await axios({
@@ -206,56 +205,145 @@ class PostcodesIO {
   /**
    *
    */
-  async random () {
+  async random() {
+    debug('Random: ' + this.endpoint + '/random/postcodes')
+    let {
+      data
+    } = await await axios({
+      ...this.baseGetRequest,
+      url: this.endpoint + '/random/postcodes'
+    })
+    return data
+  }
+
+  /**
+   *
+   */
+  async validate() {
+    if (typeof arguments[0] !== 'string') {
+      return Promise.reject(
+        new Error('Invalid argument expecting (string) got (' + typeof arguments[0] + ')')
+      )
+    }
+    debug('Validate: ' + this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/validate', arguments)
+    let {
+      data
+    } = await await axios({
+      ...this.baseGetRequest,
+      url: this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/validate'
+    })
+    return data
+  }
+
+  /**
+   *
+   */
+  async nearest() {
+    switch (arguments.length) {
+      case 1:
+        if (typeof arguments[0] !== 'string') {
+          return Promise.reject(
+            new Error('Invalid argument expecting (string) got (' + typeof arguments[0] + ')')
+          )
+        }
+        debug('Nearest: ' + this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/nearest')
+        let {
+          data
+        } = await await axios({
+          ...this.baseGetRequest,
+          url: this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/nearest'
+        })
+        return data
+      case 2:
+        if (typeof arguments[0] === 'string' && typeof arguments[1] === 'object') {
+          debug('Nearest: ' + this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/nearest', arguments)
+          let {
+            data
+          } = await await axios({
+            ...this.baseGetRequest,
+            url: this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/nearest',
+            params: arguments[1]
+          })
+          return data
+        } else {
+          return Promise.reject(
+            new Error('Invalid argument expecting (string, object) got (' + typeof arguments[0] + ', ' + typeof arguments[1] + ')')
+          )
+        }
+      default:
+        return Promise.reject(
+          new Error('Invalid number of arguments')
+        )
+    }
+  }
+
+  /**
+   *
+   */
+  async autocomplete() {
+    switch (arguments.length) {
+      case 1:
+        if (typeof arguments[0] !== 'string') {
+          return Promise.reject(
+            new Error('Invalid argument expecting (string) got (' + typeof arguments[0] + ')')
+          )
+        }
+        debug('Autocomplete: ' + this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/autocomplete')
+        let {
+          data
+        } = await await axios({
+          ...this.baseGetRequest,
+          url: this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/autocomplete'
+        })
+        return data
+      case 2:
+        if (typeof arguments[0] === 'string' && typeof arguments[1] === 'object') {
+          debug('Nearest: ' + this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/autocomplete', arguments)
+          let {
+            data
+          } = await await axios({
+            ...this.baseGetRequest,
+            url: this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/autocomplete',
+            params: arguments[1]
+          })
+          return data
+        } else {
+          return Promise.reject(
+            new Error('Invalid argument expecting (string, object) got (' + typeof arguments[0] + ', ' + typeof arguments[1] + ')')
+          )
+        }
+      default:
+        return Promise.reject(
+          new Error('Invalid number of arguments')
+        )
+    }
+  }
+
+  /**
+   *
+   */
+  async query() {
 
   }
 
   /**
    *
    */
-  async validate () {
+  async terminated() {
 
   }
 
   /**
    *
    */
-  async nearest () {
+  async outcodes() {
 
   }
 
   /**
    *
    */
-  async autocomplete () {
-
-  }
-
-  /**
-   *
-   */
-  async query () {
-
-  }
-
-  /**
-   *
-   */
-  async terminated () {
-
-  }
-
-  /**
-   *
-   */
-  async outcodes () {
-
-  }
-
-  /**
-   *
-   */
-  async place () {
+  async place() {
 
   }
 }
