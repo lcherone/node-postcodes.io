@@ -175,7 +175,7 @@ describe('node-postcodes.io', function () {
 
   //   // delay(2500)
 
-  //   it('valid, expecting status 200', async () => {
+  //   it('find, expecting status 200', async () => {
   //     let result = await postcodes.nearest('PO123AA', {
   //       radius: 1000,
   //       limit: 5
@@ -187,20 +187,44 @@ describe('node-postcodes.io', function () {
   //   delay(2500)
   // })
 
+  // /**
+  //  * autocomplete
+  //  */
+  // describe('autocomplete()', function () {
+  //   // it('find (without filter), expecting status 200', async () => {
+  //   //   let result = await postcodes.autocomplete('PO123AA')
+  //   //   debug(result)
+  //   //   result.should.have.property('status', 200)
+  //   // })
+
+  //   // delay(2500)
+
+  //   it('find, expecting status 200', async () => {
+  //     let result = await postcodes.autocomplete('PO123AA', {
+  //       radius: 1000,
+  //       limit: 5
+  //     })
+  //     debug(result)
+  //     result.should.have.property('status', 200)
+  //   })
+
+  //   delay(2500)
+  // })
+
   /**
-   * autocomplete
+   * query
    */
-  describe('autocomplete()', function () {
+  describe('query()', function () {
     // it('find (without filter), expecting status 200', async () => {
-    //   let result = await postcodes.autocomplete('PO123AA')
+    //   let result = await postcodes.query('PO123AA')
     //   debug(result)
     //   result.should.have.property('status', 200)
     // })
 
     // delay(2500)
 
-    it('valid, expecting status 200', async () => {
-      let result = await postcodes.autocomplete('PO123AA', {
+    it('find, expecting status 200', async () => {
+      let result = await postcodes.query('PO12', {
         radius: 1000,
         limit: 5
       })
