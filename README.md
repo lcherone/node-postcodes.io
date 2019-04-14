@@ -164,17 +164,19 @@ let result = await postcodes.outcodes(51.7923246977375,  0.629834723775309, {
 })
 ```
 
-### Place
+### Places
 
 ``` javascript
 // lookup
-let result = await postcodes.place('osgb4000000074553605')
+let result = await postcodes.places('osgb4000000074553605')
 
 // query
-let result = await postcodes.place('Ryde', true)
+let result = await postcodes.places('Ryde', {
+    limit: 10
+})
 
 // random
-let result = await postcodes.place()
+let result = await postcodes.places()
 ```
 
 

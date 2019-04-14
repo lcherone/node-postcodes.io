@@ -23,7 +23,6 @@ describe('node-postcodes.io', function () {
   /**
    * Lookup
    */
-  /*
   describe('lookup()', function () {
     it('valid postcode, expecting status 200', async () => {
       var result = await postcodes.lookup('PO123AA')
@@ -53,248 +52,282 @@ describe('node-postcodes.io', function () {
       var result = await postcodes.lookup(['PO123AA', 'PO123AB'], {
         filter: 'postcode,longitude,latitude'
       })
-      //debug(result)
+      // debug(result)
       result.should.have.property('status', 200)
     })
   })
-  */
 
   /**
    * Geo
    */
   describe('geo()', function () {
-    // describe('single', function () {
-    // it('find (without filter), expecting status 200', async () => {
-    //   let result = await postcodes.geo(51.7923246977375, 0.629834723775309)
-    //   debug(result)
-    //   result.should.have.property('status', 200)
-    // })
+    /**
+     * Geo - Single
+     */
+    describe('single', function () {
+      it('find (without filter), expecting status 200', async () => {
+        let result = await postcodes.geo(51.7923246977375, 0.629834723775309)
+        // debug(result)
+        result.should.have.property('status', 200)
+      })
 
-    // delay(2500)
+      delay(2500)
 
-    // it('find (with filter), expecting status 200', async () => {
-    //   let result = await postcodes.geo(51.7923246977375, 0.629834723775309, {
-    //     limit: 10,
-    //     radius: 10,
-    //     wideSearch: false
-    //   })
-    //   debug(result)
-    //   result.should.have.property('status', 200)
-    // })
+      it('find (with filter), expecting status 200', async () => {
+        let result = await postcodes.geo(51.7923246977375, 0.629834723775309, {
+          limit: 10,
+          radius: 10,
+          wideSearch: false
+        })
+        // debug(result)
+        result.should.have.property('status', 200)
+      })
 
-    // delay(2500)
-    // })
+      delay(2500)
+    })
 
+    /**
+     * Geo - Batch
+     */
     describe('batch', function () {
-      // it('find (without filter), expecting status 200', async () => {
-      //   let result = await postcodes.geo([{
-      //     'longitude': 0.629834723775309,
-      //     'latitude': 51.7923246977375,
-      //     'radius': 1000,
-      //     'limit': 5
-      //   }, {
-      //     'longitude': -2.49690382054704,
-      //     'latitude': 53.5351312861402,
-      //     'radius': 1000,
-      //     'limit': 5
-      //   }])
-      //   debug(result)
-      //   result.should.have.property('status', 200)
-      // })
+      it('find (without filter), expecting status 200', async () => {
+        let result = await postcodes.geo([{
+          'longitude': 0.629834723775309,
+          'latitude': 51.7923246977375,
+          'radius': 1000,
+          'limit': 5
+        }, {
+          'longitude': -2.49690382054704,
+          'latitude': 53.5351312861402,
+          'radius': 1000,
+          'limit': 5
+        }])
+        // debug(result)
+        result.should.have.property('status', 200)
+      })
 
-      // delay(2500)
+      delay(2500)
 
-      // it('find (with filter), expecting status 200', async () => {
-      //   let result = await postcodes.geo([{
-      //     'longitude': 0.629834723775309,
-      //     'latitude': 51.7923246977375,
-      //     'radius': 1000,
-      //     'limit': 5
-      //   }, {
-      //     'longitude': -2.49690382054704,
-      //     'latitude': 53.5351312861402,
-      //     'radius': 1000,
-      //     'limit': 5
-      //   }], {
-      //     filter: 'postcode,longitude,latitude',
-      //     wideSearch: false
-      //   })
-      //   debug(result)
-      //   result.should.have.property('status', 200)
-      // })
+      it('find (with filter), expecting status 200', async () => {
+        let result = await postcodes.geo([{
+          'longitude': 0.629834723775309,
+          'latitude': 51.7923246977375,
+          'radius': 1000,
+          'limit': 5
+        }, {
+          'longitude': -2.49690382054704,
+          'latitude': 53.5351312861402,
+          'radius': 1000,
+          'limit': 5
+        }], {
+          filter: 'postcode,longitude,latitude',
+          wideSearch: false
+        })
+        // debug(result)
+        result.should.have.property('status', 200)
+      })
 
-      // delay(2500)
+      delay(2500)
     })
   })
 
-  // /**
-  //  * random
-  //  */
-  // describe('random()', function () {
-  //   it('find (without filter), expecting status 200', async () => {
-  //     let result = await postcodes.random()
-  //     debug(result)
-  //     result.should.have.property('status', 200)
-  //   })
+  /**
+   * random
+   */
+  describe('random()', function () {
+    it('expecting status 200', async () => {
+      let result = await postcodes.random()
+      // debug(result)
+      result.should.have.property('status', 200)
+    })
 
-  //   delay(2500)
-  // })
+    delay(2500)
+  })
 
-  // /**
-  //  * validate
-  //  */
-  // describe('validate()', function () {
-  //   // it('valid, expecting status 200, result true', async () => {
-  //   //   let result = await postcodes.validate('po333jf')
-  //   //   debug(result)
-  //   //   result.should.have.property('status', 200)
-  //   //   result.should.have.property('result', true)
-  //   // })
+  /**
+   * validate
+   */
+  describe('validate()', function () {
+    it('valid, expecting status 200, result true', async () => {
+      let result = await postcodes.validate('PO123AA')
+      // debug(result)
+      result.should.have.property('status', 200)
+      result.should.have.property('result', true)
+    })
 
-  //   // delay(2500)
+    delay(2500)
 
-  //   it('invalid, expecting status 200, result false', async () => {
-  //     let result = await postcodes.validate('po33f')
-  //     debug(result)
-  //     result.should.have.property('status', 200)
-  //     result.should.have.property('result', false)
-  //   })
+    it('invalid, expecting status 200, result false', async () => {
+      let result = await postcodes.validate('ZO123AA')
+      // debug(result)
+      result.should.have.property('status', 404)
+      result.should.have.property('result', false)
+    })
 
-  //   delay(2500)
-  // })
+    delay(2500)
+  })
 
-  // /**
-  //  * nearest
-  //  */
-  // describe('nearest()', function () {
-  //   // it('find (without filter), expecting status 200', async () => {
-  //   //   let result = await postcodes.nearest('PO123AA')
-  //   //   debug(result)
-  //   //   result.should.have.property('status', 200)
-  //   // })
+  /**
+   * nearest
+   */
+  describe('nearest()', function () {
+    it('find (without filter), expecting status 200', async () => {
+      let result = await postcodes.nearest('PO123AA')
+      // debug(result)
+      result.should.have.property('status', 200)
+    })
 
-  //   // delay(2500)
+    delay(2500)
 
-  //   it('find, expecting status 200', async () => {
-  //     let result = await postcodes.nearest('PO123AA', {
-  //       radius: 1000,
-  //       limit: 5
-  //     })
-  //     debug(result)
-  //     result.should.have.property('status', 200)
-  //   })
+    it('find, expecting status 200', async () => {
+      let result = await postcodes.nearest('PO123AA', {
+        radius: 1000,
+        limit: 5
+      })
+      // debug(result)
+      result.should.have.property('status', 200)
+    })
 
-  //   delay(2500)
-  // })
+    delay(2500)
+  })
 
-  // /**
-  //  * autocomplete
-  //  */
-  // describe('autocomplete()', function () {
-  //   // it('find (without filter), expecting status 200', async () => {
-  //   //   let result = await postcodes.autocomplete('PO123AA')
-  //   //   debug(result)
-  //   //   result.should.have.property('status', 200)
-  //   // })
+  /**
+   * autocomplete
+   */
+  describe('autocomplete()', function () {
+    it('find (without filter), expecting status 200', async () => {
+      let result = await postcodes.autocomplete('PO123AA')
+      // debug(result)
+      result.should.have.property('status', 200)
+    })
 
-  //   // delay(2500)
+    delay(2500)
 
-  //   it('find, expecting status 200', async () => {
-  //     let result = await postcodes.autocomplete('PO123AA', {
-  //       radius: 1000,
-  //       limit: 5
-  //     })
-  //     debug(result)
-  //     result.should.have.property('status', 200)
-  //   })
+    it('find, expecting status 200', async () => {
+      let result = await postcodes.autocomplete('PO123AA', {
+        radius: 1000,
+        limit: 5
+      })
+      // debug(result)
+      result.should.have.property('status', 200)
+    })
 
-  //   delay(2500)
-  // })
+    delay(2500)
+  })
 
-  // /**
-  //  * query
-  //  */
-  // describe('query()', function () {
-  //   // it('find (without filter), expecting status 200', async () => {
-  //   //   let result = await postcodes.query('PO123AA')
-  //   //   debug(result)
-  //   //   result.should.have.property('status', 200)
-  //   // })
+  /**
+   * query
+   */
+  describe('query()', function () {
+    it('find (without filter), expecting status 200', async () => {
+      let result = await postcodes.query('PO123AA')
+      // debug(result)
+      result.should.have.property('status', 200)
+    })
 
-  //   // delay(2500)
+    delay(2500)
 
-  //   it('find, expecting status 200', async () => {
-  //     let result = await postcodes.query('PO12', {
-  //       radius: 1000,
-  //       limit: 5
-  //     })
-  //     debug(result)
-  //     result.should.have.property('status', 200)
-  //   })
+    it('find, expecting status 200', async () => {
+      let result = await postcodes.query('PO12', {
+        radius: 1000,
+        limit: 5
+      })
+      // debug(result)
+      result.should.have.property('status', 200)
+    })
 
-  //   delay(2500)
-  // })
+    delay(2500)
+  })
 
-  // /**
-  //  * terminated
-  //  */
-  // describe('terminated()', function () {
-  //   it('find valid, expecting status 404', async () => {
-  //     let result = await postcodes.terminated('PO123AA')
-  //     debug(result)
-  //     result.should.have.property('status', 404)
-  //     result.should.have.property('error', 'Terminated postcode not found')
-  //   })
+  /**
+   * terminated
+   */
+  describe('terminated()', function () {
+    it('find valid, expecting status 404', async () => {
+      let result = await postcodes.terminated('PO123AA')
+      // debug(result)
+      result.should.have.property('status', 404)
+      result.should.have.property('error', 'Terminated postcode not found')
+    })
 
-  //   delay(2500)
-  // })
+    delay(2500)
+  })
 
-  // /**
-  //  * terminated
-  //  */
-  // describe('terminated()', function () {
-  //   it('find valid, expecting status 404', async () => {
-  //     let result = await postcodes.terminated('PO123AA')
-  //     debug(result)
-  //     result.should.have.property('status', 404)
-  //     result.should.have.property('error', 'Terminated postcode not found')
-  //   })
+  /**
+   * terminated
+   */
+  describe('terminated()', function () {
+    it('find valid, expecting status 404', async () => {
+      let result = await postcodes.terminated('PO123AA')
+      // debug(result)
+      result.should.have.property('status', 404)
+      result.should.have.property('error', 'Terminated postcode not found')
+    })
 
-  //   delay(2500)
-  // })
+    delay(2500)
+  })
 
   /**
    * outcodes
    */
   describe('outcodes()', function () {
-    // it('find, expecting status 200', async () => {
-    //   let result = await postcodes.outcodes('PO33')
-    //   debug(result)
-    //   result.should.have.property('status', 200)
-    // })
+    it('find, expecting status 200', async () => {
+      let result = await postcodes.outcodes('PO33')
+      // debug(result)
+      result.should.have.property('status', 200)
+    })
 
-    // delay(2500)
+    delay(2500)
 
-    // it('find, expecting status 200', async () => {
-    //   let result = await postcodes.outcodes('PO3', {
-    //     limit: 25,
-    //     radius: 5000
-    //   })
-    //   debug(result)
-    //   result.should.have.property('status', 200)
-    // })
-s
-    // delay(2500)
+    it('find, expecting status 200', async () => {
+      let result = await postcodes.outcodes('PO3', {
+        limit: 25,
+        radius: 5000
+      })
+      // debug(result)
+      result.should.have.property('status', 200)
+    })
+
+    delay(2500)
 
     it('find, expecting status 200', async () => {
       let result = await postcodes.outcodes(50.7887094404762, -1.08621057142857, {
         limit: 1,
         radius: 5000
       })
-      debug(result)
+      // debug(result)
       result.should.have.property('status', 200)
     })
 
     delay(2500)
+  })
+
+  /**
+   * places
+   */
+  describe('places()', function () {
+    it('lookup, expecting status 200', async () => {
+      let result = await postcodes.places('osgb4000000074553605')
+      // debug(result)
+      result.should.have.property('status', 200)
+    })
+
+    delay(2500)
+
+    it('query, expecting status 200', async () => {
+      let result = await postcodes.places('Ryde', {
+        limit: 1
+      })
+      // debug(result)
+      result.should.have.property('status', 200)
+    })
+
+    delay(2500)
+
+    it('random, expecting status 200', async () => {
+      let result = await postcodes.places()
+      // debug(result)
+      result.should.have.property('status', 200)
+    })
   })
 })
