@@ -211,4 +211,4 @@ $ npm test
 
 ## License
 
-The MIT License (MIT). Please see [License File](https://github.com/node-postcodes.io/blob/master/LICENSE) for more information.
+The MIT License (MIT). Please see [License File](https://github.com/lcherone/node-postcodes.io/blob/master/LICENSE) for more information.
