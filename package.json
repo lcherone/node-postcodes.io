@@ -1,7 +1,7 @@
 {
     "name": "node-postcodes.io",
     "version": "1.0.0",
-    "description": "postcodes.io - NodeJS Client/Wrapper",
+    "description": "Postcodes.io - NodeJS Client/Wrapper",
     "main": "src/index.js",
     "scripts": {
         "test": "standard --fix && standard && cd test && ../node_modules/mocha/bin/mocha --exit --check-leaks --slow 500ms"
