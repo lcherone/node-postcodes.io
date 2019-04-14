@@ -28,7 +28,7 @@ class PostcodesIO {
   /**
    *
    */
-  constructor () {
+  constructor() {
     this.endpoint = 'https://api.postcodes.io'
 
     this.baseRequest = {
@@ -54,7 +54,7 @@ class PostcodesIO {
   /**
    *
    */
-  async lookup () {
+  async lookup() {
     let postcode
     let params = {}
 
@@ -112,7 +112,7 @@ class PostcodesIO {
   /**
    *
    */
-  async geo () {
+  async geo() {
     switch (arguments.length) {
       case 0:
         return Promise.reject(
@@ -205,7 +205,7 @@ class PostcodesIO {
   /**
    *
    */
-  async random () {
+  async random() {
     debug('Random: ' + this.endpoint + '/random/postcodes')
     let {
       data
@@ -219,7 +219,7 @@ class PostcodesIO {
   /**
    *
    */
-  async validate () {
+  async validate() {
     if (typeof arguments[0] !== 'string') {
       return Promise.reject(
         new Error('Invalid argument expecting (string) got (' + typeof arguments[0] + ')')
@@ -238,7 +238,7 @@ class PostcodesIO {
   /**
    *
    */
-  async nearest () {
+  async nearest() {
     switch (arguments.length) {
       case 1:
         if (typeof arguments[0] !== 'string') {
@@ -280,7 +280,7 @@ class PostcodesIO {
   /**
    *
    */
-  async autocomplete () {
+  async autocomplete() {
     switch (arguments.length) {
       case 1:
         if (typeof arguments[0] !== 'string') {
@@ -298,7 +298,7 @@ class PostcodesIO {
         return data
       case 2:
         if (typeof arguments[0] === 'string' && typeof arguments[1] === 'object') {
-          debug('Nearest: ' + this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/autocomplete', arguments)
+          debug('Autocomplete: ' + this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/autocomplete', arguments)
           let {
             data
           } = await axios({
@@ -322,7 +322,7 @@ class PostcodesIO {
   /**
    *
    */
-  async query () {
+  async query() {
     switch (arguments.length) {
       case 1:
         if (typeof arguments[0] !== 'string') {
@@ -335,7 +335,7 @@ class PostcodesIO {
           data
         } = await axios({
           ...this.baseGetRequest,
-          url: this.endpoint + '/postcodes' + encodeURIComponent(arguments[0]),
+          url: this.endpoint + '/postcodes',
           params: {
             q: arguments[0]
           }
@@ -343,12 +343,12 @@ class PostcodesIO {
         return data
       case 2:
         if (typeof arguments[0] === 'string' && typeof arguments[1] === 'object') {
-          debug('Nearest: ' + this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/autocomplete', arguments)
+          debug('Query: ' + this.endpoint + '/postcodes?q=' + encodeURIComponent(arguments[0]))
           let {
             data
           } = await axios({
             ...this.baseGetRequest,
-            url: this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/autocomplete',
+            url: this.endpoint + '/postcodes',
             params: {
               q: arguments[0],
               ...arguments[1]
@@ -370,21 +370,21 @@ class PostcodesIO {
   /**
    *
    */
-  async terminated () {
+  async terminated() {
 
   }
 
   /**
    *
    */
-  async outcodes () {
+  async outcodes() {
 
   }
 
   /**
    *
    */
-  async place () {
+  async place() {
 
   }
 }
