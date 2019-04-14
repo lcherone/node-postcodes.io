@@ -211,25 +211,53 @@ describe('node-postcodes.io', function () {
   //   delay(2500)
   // })
 
+  // /**
+  //  * query
+  //  */
+  // describe('query()', function () {
+  //   // it('find (without filter), expecting status 200', async () => {
+  //   //   let result = await postcodes.query('PO123AA')
+  //   //   debug(result)
+  //   //   result.should.have.property('status', 200)
+  //   // })
+
+  //   // delay(2500)
+
+  //   it('find, expecting status 200', async () => {
+  //     let result = await postcodes.query('PO12', {
+  //       radius: 1000,
+  //       limit: 5
+  //     })
+  //     debug(result)
+  //     result.should.have.property('status', 200)
+  //   })
+
+  //   delay(2500)
+  // })
+
+  // /**
+  //  * terminated
+  //  */
+  // describe('terminated()', function () {
+  //   it('find valid, expecting status 404', async () => {
+  //     let result = await postcodes.terminated('PO123AA')
+  //     debug(result)
+  //     result.should.have.property('status', 404)
+  //     result.should.have.property('error', 'Terminated postcode not found')
+  //   })
+
+  //   delay(2500)
+  // })
+  
   /**
-   * query
+   * terminated
    */
-  describe('query()', function () {
-    // it('find (without filter), expecting status 200', async () => {
-    //   let result = await postcodes.query('PO123AA')
-    //   debug(result)
-    //   result.should.have.property('status', 200)
-    // })
-
-    // delay(2500)
-
-    it('find, expecting status 200', async () => {
-      let result = await postcodes.query('PO12', {
-        radius: 1000,
-        limit: 5
-      })
+  describe('terminated()', function () {
+    it('find valid, expecting status 404', async () => {
+      let result = await postcodes.terminated('PO123AA')
       debug(result)
-      result.should.have.property('status', 200)
+      result.should.have.property('status', 404)
+      result.should.have.property('error', 'Terminated postcode not found')
     })
 
     delay(2500)
