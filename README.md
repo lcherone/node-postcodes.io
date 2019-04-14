@@ -16,7 +16,7 @@ $ npm i node-postcodes.io
 
 ## Usage
 
-```
+``` javascript
 const postcodes = require('node-postcodes.io')
 ```
 
@@ -199,6 +199,14 @@ let result = await postcodes.places('Ryde', {
 
 // random
 let result = await postcodes.places()
+```
+
+## Testing
+
+Can see test results @ https://travis-ci.org/lcherone/node-postcodes.io, if you want to run them locally, your need install [mocha](https://mochajs.org), then run:
+
+``` bash
+$ npm test
 ```
 
 ## License
