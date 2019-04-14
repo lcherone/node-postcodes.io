@@ -248,16 +248,51 @@ describe('node-postcodes.io', function () {
 
   //   delay(2500)
   // })
-  
+
+  // /**
+  //  * terminated
+  //  */
+  // describe('terminated()', function () {
+  //   it('find valid, expecting status 404', async () => {
+  //     let result = await postcodes.terminated('PO123AA')
+  //     debug(result)
+  //     result.should.have.property('status', 404)
+  //     result.should.have.property('error', 'Terminated postcode not found')
+  //   })
+
+  //   delay(2500)
+  // })
+
   /**
-   * terminated
+   * outcodes
    */
-  describe('terminated()', function () {
-    it('find valid, expecting status 404', async () => {
-      let result = await postcodes.terminated('PO123AA')
+  describe('outcodes()', function () {
+    // it('find, expecting status 200', async () => {
+    //   let result = await postcodes.outcodes('PO33')
+    //   debug(result)
+    //   result.should.have.property('status', 200)
+    // })
+
+    // delay(2500)
+
+    // it('find, expecting status 200', async () => {
+    //   let result = await postcodes.outcodes('PO3', {
+    //     limit: 25,
+    //     radius: 5000
+    //   })
+    //   debug(result)
+    //   result.should.have.property('status', 200)
+    // })
+s
+    // delay(2500)
+
+    it('find, expecting status 200', async () => {
+      let result = await postcodes.outcodes(50.7887094404762, -1.08621057142857, {
+        limit: 1,
+        radius: 5000
+      })
       debug(result)
-      result.should.have.property('status', 404)
-      result.should.have.property('error', 'Terminated postcode not found')
+      result.should.have.property('status', 200)
     })
 
     delay(2500)

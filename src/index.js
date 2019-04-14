@@ -439,7 +439,89 @@ class PostcodesIO {
    *
    */
   async outcodes () {
-    try {} catch (e) {
+    try {
+      switch (arguments.length) {
+        case 0:
+          return Promise.reject(
+            new Error(
+              'Invalid number of arguments'
+            )
+          )
+        case 1:
+          if (typeof arguments[0] !== 'string') {
+            return Promise.reject(
+              new Error(
+                'Invalid argument, expecting (string) got (' + typeof arguments[0] + ')'
+              )
+            )
+          }
+          debug('Outcodes: ' + this.endpoint + '/outcodes/' + encodeURIComponent(arguments[0]))
+          let {
+            data
+          } = await axios({
+            ...this.baseGetRequest,
+            url: this.endpoint + '/outcodes/' + encodeURIComponent(arguments[0])
+          })
+          return data
+        case 2:
+          if (typeof arguments[0] === 'string' && (typeof arguments[1] === 'object' && !Array.isArray(arguments[1]))) {
+            debug('Outcodes: ' + this.endpoint + '/outcodes/' + encodeURIComponent(arguments[0]), arguments[1])
+            let {
+              data
+            } = await axios({
+              ...this.baseGetRequest,
+              url: this.endpoint + '/outcodes/' + encodeURIComponent(arguments[0]) + '/nearest',
+              params: arguments[1]
+            })
+            return data
+          } else if (typeof arguments[0] === 'number' && typeof arguments[1] === 'number') {
+            debug('Outcodes: ' + this.endpoint + '/outcodes?lat=' + encodeURIComponent(arguments[0]) + '?lat=' + encodeURIComponent(arguments[1]))
+            let {
+              data
+            } = await axios({
+              ...this.baseGetRequest,
+              url: this.endpoint + '/outcodes',
+              params: {
+                lat: arguments[0],
+                lon: arguments[1]
+              }
+            })
+            return data
+          } else {
+            return Promise.reject(
+              new Error(
+                'Invalid arguments, expecting ([string|number], [object|number]) got (' + typeof arguments[0] + ', ' + typeof arguments[1] + ')'
+              )
+            )
+          }
+        case 3:
+          if (typeof arguments[0] === 'number' && typeof arguments[1] === 'number' && (typeof arguments[2] === 'object' && !Array.isArray(arguments[2]))) {
+            debug('Outcodes: ' + this.endpoint + '/outcodes?lat=' + encodeURIComponent(arguments[0]) + '?lat=' + encodeURIComponent(arguments[1]), arguments[2])
+            let {
+              data
+            } = await axios({
+              ...this.baseGetRequest,
+              url: this.endpoint + '/outcodes',
+              params: {
+                lat: arguments[0],
+                lon: arguments[1],
+                ...arguments[2]
+              }
+            })
+            return data
+          } else {
+            return Promise.reject(
+              new Error(
+                'Invalid arguments, expecting ([string|number], [object|number]) got (' + typeof arguments[0] + ', ' + typeof arguments[1] + ')'
+              )
+            )
+          }
+        default:
+          return Promise.reject(
+            new Error('Invalid number of arguments')
+          )
+      }
+    } catch (e) {
       return Promise.resolve(e.response.data || {
         status: 500,
         error: 'Unknown error'
