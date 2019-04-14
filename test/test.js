@@ -30,7 +30,7 @@ describe('node-postcodes.io', function () {
       result.should.have.property('status', 200)
     })
 
-    delay(2500)
+    delay(1000)
 
     it('invalid postcode, expecting status 404', async () => {
       var result = await postcodes.lookup('px3330')
@@ -38,7 +38,7 @@ describe('node-postcodes.io', function () {
       result.should.have.property('status', 404)
     })
 
-    delay(2500)
+    delay(1000)
 
     it('valid batch of postcodes (without filter), expecting status 200', async () => {
       var result = await postcodes.lookup(['PO123AA', 'PO123AB'])
@@ -46,7 +46,7 @@ describe('node-postcodes.io', function () {
       result.should.have.property('status', 200)
     })
 
-    delay(2500)
+    delay(1000)
 
     it('valid batch of postcodes (with filter), expecting status 200', async () => {
       var result = await postcodes.lookup(['PO123AA', 'PO123AB'], {
@@ -71,7 +71,7 @@ describe('node-postcodes.io', function () {
         result.should.have.property('status', 200)
       })
 
-      delay(2500)
+      delay(1000)
 
       it('find (with filter), expecting status 200', async () => {
         let result = await postcodes.geo(51.7923246977375, 0.629834723775309, {
@@ -83,7 +83,7 @@ describe('node-postcodes.io', function () {
         result.should.have.property('status', 200)
       })
 
-      delay(2500)
+      delay(1000)
     })
 
     /**
@@ -94,31 +94,31 @@ describe('node-postcodes.io', function () {
         let result = await postcodes.geo([{
           'longitude': 0.629834723775309,
           'latitude': 51.7923246977375,
-          'radius': 1000,
-          'limit': 5
+          'radius': 100,
+          'limit': 2
         }, {
           'longitude': -2.49690382054704,
           'latitude': 53.5351312861402,
-          'radius': 1000,
-          'limit': 5
+          'radius': 100,
+          'limit': 2
         }])
         // debug(result)
         result.should.have.property('status', 200)
       })
 
-      delay(2500)
+      delay(1000)
 
       it('find (with filter), expecting status 200', async () => {
         let result = await postcodes.geo([{
           'longitude': 0.629834723775309,
           'latitude': 51.7923246977375,
-          'radius': 1000,
-          'limit': 5
+          'radius': 100,
+          'limit': 2
         }, {
           'longitude': -2.49690382054704,
           'latitude': 53.5351312861402,
-          'radius': 1000,
-          'limit': 5
+          'radius': 100,
+          'limit': 2
         }], {
           filter: 'postcode,longitude,latitude',
           wideSearch: false
@@ -127,7 +127,7 @@ describe('node-postcodes.io', function () {
         result.should.have.property('status', 200)
       })
 
-      delay(2500)
+      delay(1000)
     })
   })
 
@@ -141,7 +141,7 @@ describe('node-postcodes.io', function () {
       result.should.have.property('status', 200)
     })
 
-    delay(2500)
+    delay(1000)
   })
 
   /**
@@ -155,16 +155,16 @@ describe('node-postcodes.io', function () {
       result.should.have.property('result', true)
     })
 
-    delay(2500)
+    delay(1000)
 
     it('invalid, expecting status 200, result false', async () => {
       let result = await postcodes.validate('ZO123AA')
       // debug(result)
-      result.should.have.property('status', 404)
+      result.should.have.property('status', 200)
       result.should.have.property('result', false)
     })
 
-    delay(2500)
+    delay(1000)
   })
 
   /**
@@ -177,7 +177,7 @@ describe('node-postcodes.io', function () {
       result.should.have.property('status', 200)
     })
 
-    delay(2500)
+    delay(1000)
 
     it('find, expecting status 200', async () => {
       let result = await postcodes.nearest('PO123AA', {
@@ -188,7 +188,7 @@ describe('node-postcodes.io', function () {
       result.should.have.property('status', 200)
     })
 
-    delay(2500)
+    delay(1000)
   })
 
   /**
@@ -201,7 +201,7 @@ describe('node-postcodes.io', function () {
       result.should.have.property('status', 200)
     })
 
-    delay(2500)
+    delay(1000)
 
     it('find, expecting status 200', async () => {
       let result = await postcodes.autocomplete('PO123AA', {
@@ -212,7 +212,7 @@ describe('node-postcodes.io', function () {
       result.should.have.property('status', 200)
     })
 
-    delay(2500)
+    delay(1000)
   })
 
   /**
@@ -225,7 +225,7 @@ describe('node-postcodes.io', function () {
       result.should.have.property('status', 200)
     })
 
-    delay(2500)
+    delay(1000)
 
     it('find, expecting status 200', async () => {
       let result = await postcodes.query('PO12', {
@@ -236,7 +236,7 @@ describe('node-postcodes.io', function () {
       result.should.have.property('status', 200)
     })
 
-    delay(2500)
+    delay(1000)
   })
 
   /**
@@ -250,7 +250,7 @@ describe('node-postcodes.io', function () {
       result.should.have.property('error', 'Terminated postcode not found')
     })
 
-    delay(2500)
+    delay(1000)
   })
 
   /**
@@ -264,7 +264,7 @@ describe('node-postcodes.io', function () {
       result.should.have.property('error', 'Terminated postcode not found')
     })
 
-    delay(2500)
+    delay(1000)
   })
 
   /**
@@ -277,7 +277,7 @@ describe('node-postcodes.io', function () {
       result.should.have.property('status', 200)
     })
 
-    delay(2500)
+    delay(1000)
 
     it('find, expecting status 200', async () => {
       let result = await postcodes.outcodes('PO3', {
@@ -288,7 +288,7 @@ describe('node-postcodes.io', function () {
       result.should.have.property('status', 200)
     })
 
-    delay(2500)
+    delay(1000)
 
     it('find, expecting status 200', async () => {
       let result = await postcodes.outcodes(50.7887094404762, -1.08621057142857, {
@@ -299,7 +299,7 @@ describe('node-postcodes.io', function () {
       result.should.have.property('status', 200)
     })
 
-    delay(2500)
+    delay(1000)
   })
 
   /**
@@ -312,7 +312,7 @@ describe('node-postcodes.io', function () {
       result.should.have.property('status', 200)
     })
 
-    delay(2500)
+    delay(1000)
 
     it('query, expecting status 200', async () => {
       let result = await postcodes.places('Ryde', {
@@ -322,7 +322,7 @@ describe('node-postcodes.io', function () {
       result.should.have.property('status', 200)
     })
 
-    delay(2500)
+    delay(1000)
 
     it('random, expecting status 200', async () => {
       let result = await postcodes.places()

@@ -1,8 +1,10 @@
 # Postcodes.io - NodeJS Client/Wrapper
 
+[![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard) [![NPM](https://nodei.co/npm/node-postcodes.io.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/node-postcodes.io/)
 [![Build Status](https://travis-ci.org/lcherone/node-postcodes.io.svg?branch=master)](https://travis-ci.org/lcherone/node-postcodes.io)
 
-...
+
+An easy to use [postcodes.io](http://postcodes.io/) wrapper for NodeJS.
 
 ## Install
 
@@ -20,6 +22,8 @@ const postcodes = require('node-postcodes.io')
 
 ### Lookup
 
+http://postcodes.io/docs#Postcode-Lookup
+
 ``` javascript
 // single
 let result = await postcodes.lookup('PO123AA')
@@ -34,6 +38,8 @@ let result = await postcodes.lookup(['PO123AA', 'PO123AB'], {
 ```
 
 ### Geo
+
+http://postcodes.io/docs#Geocode-Postcode
 
 #### Single
 
@@ -88,17 +94,23 @@ let result = await postcodes.geo([
 
 ### Random
 
+http://postcodes.io/docs#Geocode-Postcode
+
 ``` javascript
 let result = await postcodes.random()
 ```
 
 ### Validate
 
+http://postcodes.io/docs#Postcode-Validation
+
 ``` javascript
 let result = await postcodes.validate('PO123AA')
 ```
 
 ### Nearest
+
+http://postcodes.io/docs#Nearest-Postcode
 
 ``` javascript
 let result = await postcodes.nearest('PO123AA')
@@ -112,6 +124,8 @@ let result = await postcodes.nearest('PO123AA', {
 
 ### Autocomplete
 
+http://postcodes.io/docs#Postcode-Autocomplete
+
 ``` javascript
 let result = await postcodes.autocomplete('PO123AA')
 
@@ -122,6 +136,8 @@ let result = await postcodes.autocomplete('PO123AA', {
 ```
 
 ### Query
+
+http://postcodes.io/docs#Postcode-Query
 
 ``` javascript
 let result = await postcodes.query('PO123AA')
@@ -134,11 +150,15 @@ let result = await postcodes.query('PO123AA', {
 
 ### Terminated
 
+http://postcodes.io/docs#Terminated
+
 ``` javascript
 let result = await postcodes.terminated('PO123AA')
 ```
 
 ### Outcodes
+
+http://postcodes.io/docs#Show-Outcode
 
 ``` javascript
 // lookup
@@ -166,6 +186,8 @@ let result = await postcodes.outcodes(51.7923246977375,  0.629834723775309, {
 
 ### Places
 
+http://postcodes.io/docs#Place-Lookup
+
 ``` javascript
 // lookup
 let result = await postcodes.places('osgb4000000074553605')
@@ -179,8 +201,6 @@ let result = await postcodes.places('Ryde', {
 let result = await postcodes.places()
 ```
 
-
 ## License
 
-```
-```
+The MIT License (MIT). Please see [License File](https://github.com/node-postcodes.io/blob/master/LICENSE) for more information.

@@ -28,7 +28,7 @@ class PostcodesIO {
   /**
    *
    */
-  constructor() {
+  constructor () {
     this.endpoint = 'https://api.postcodes.io'
 
     this.baseRequest = {
@@ -53,9 +53,9 @@ class PostcodesIO {
 
   /**
    * Lookup Postcode
-   * 
+   *
    * @link: http://postcodes.io/docs#Postcode-Lookup
-   * 
+   *
    * Usage:
    ``` javascript
     // single
@@ -70,7 +70,7 @@ class PostcodesIO {
     })
     ```
    */
-  async lookup() {
+  async lookup () {
     let postcode
     let params = {}
 
@@ -127,9 +127,9 @@ class PostcodesIO {
 
   /**
    * Geo
-   * 
+   *
    * @link: http://postcodes.io/docs#Geocode-Postcode
-   * 
+   *
    * Usage:
    ``` javascript
     // single
@@ -176,98 +176,98 @@ class PostcodesIO {
     })
     ```
    */
-  async geo() {
+  async geo () {
     try {
       switch (arguments.length) {
         case 0:
-          {
+        {
+          return Promise.reject(
+            new Error(
+              'Invalid number of arguments'
+            )
+          )
+        }
+        case 1:
+        {
+          if (!Array.isArray(arguments[0])) {
             return Promise.reject(
               new Error(
-                'Invalid number of arguments'
+                'Invalid argument, expecting (array) got (' + typeof arguments[0] + ')'
               )
             )
           }
-        case 1:
-          {
-            if (!Array.isArray(arguments[0])) {
-              return Promise.reject(
-                new Error(
-                  'Invalid argument, expecting (array) got (' + typeof arguments[0] + ')'
-                )
-              )
+          debug('Geo: ' + this.endpoint + '/postcodes', arguments)
+          let {
+            data
+          } = await axios({
+            ...this.basePostRequest,
+            url: this.endpoint + '/postcodes',
+            data: {
+              geolocations: arguments[0]
             }
+          })
+          return data
+        }
+        case 2:
+        {
+          if (typeof arguments[0] === 'number' && typeof arguments[1] === 'number') {
+            debug('Geo: ' + this.endpoint + '/postcodes', arguments)
+            let {
+              data
+            } = await axios({
+              ...this.baseGetRequest,
+              url: this.endpoint + '/postcodes',
+              params: {
+                lat: arguments[0],
+                lon: arguments[1]
+              }
+            })
+            return data
+          } else if (Array.isArray(arguments[0]) && typeof arguments[1] === 'object') {
             debug('Geo: ' + this.endpoint + '/postcodes', arguments)
             let {
               data
             } = await axios({
               ...this.basePostRequest,
               url: this.endpoint + '/postcodes',
+              params: arguments[1],
               data: {
                 geolocations: arguments[0]
               }
             })
             return data
-          }
-        case 2:
-          {
-            if (typeof arguments[0] === 'number' && typeof arguments[1] === 'number') {
-              debug('Geo: ' + this.endpoint + '/postcodes', arguments)
-              let {
-                data
-              } = await axios({
-                ...this.baseGetRequest,
-                url: this.endpoint + '/postcodes',
-                params: {
-                  lat: arguments[0],
-                  lon: arguments[1]
-                }
-              })
-              return data
-            } else if (Array.isArray(arguments[0]) && typeof arguments[1] === 'object') {
-              debug('Geo: ' + this.endpoint + '/postcodes', arguments)
-              let {
-                data
-              } = await axios({
-                ...this.basePostRequest,
-                url: this.endpoint + '/postcodes',
-                params: arguments[1],
-                data: {
-                  geolocations: arguments[0]
-                }
-              })
-              return data
-            } else {
-              return Promise.reject(
-                new Error(
-                  'Invalid arguments, expecting (array, object) got (' + typeof arguments[0] + ', ' + typeof arguments[1] + ')'
-                )
+          } else {
+            return Promise.reject(
+              new Error(
+                'Invalid arguments, expecting (array, object) got (' + typeof arguments[0] + ', ' + typeof arguments[1] + ')'
               )
-            }
+            )
           }
+        }
         case 3:
-          {
-            if (typeof arguments[0] === 'number' && typeof arguments[1] === 'number' && (typeof arguments[2] === 'object' && !Array.isArray(arguments[2]))) {
-              debug('Geo: ' + this.endpoint + '/postcodes', arguments)
-              let {
-                data
-              } = await axios({
-                ...this.baseGetRequest,
-                url: this.endpoint + '/postcodes',
-                params: {
-                  lat: arguments[0],
-                  lon: arguments[1]
-                }
-              })
-              return data
-            } else {
-              return Promise.reject(
-                new Error(
-                  'Invalid arguments, expecting (number, number, object)' +
+        {
+          if (typeof arguments[0] === 'number' && typeof arguments[1] === 'number' && (typeof arguments[2] === 'object' && !Array.isArray(arguments[2]))) {
+            debug('Geo: ' + this.endpoint + '/postcodes', arguments)
+            let {
+              data
+            } = await axios({
+              ...this.baseGetRequest,
+              url: this.endpoint + '/postcodes',
+              params: {
+                lat: arguments[0],
+                lon: arguments[1]
+              }
+            })
+            return data
+          } else {
+            return Promise.reject(
+              new Error(
+                'Invalid arguments, expecting (number, number, object)' +
                   ' got (' + typeof arguments[0] + ', ' + typeof arguments[1] + ', ' + (Array.isArray(arguments[2]) ? 'array' : typeof arguments[2]) + ')'
-                )
               )
-            }
+            )
           }
+        }
         default:
           return Promise.reject(
             new Error('Invalid number of arguments')
@@ -283,15 +283,15 @@ class PostcodesIO {
 
   /**
    * Random
-   * 
-   * @link: http://postcodes.io/docs#Random-Postcode
-   * 
+   *
+   * @link: http://postcodes.io/docs#Geocode-Postcode
+   *
    * Usage:
    ``` javascript
     let result = await postcodes.random()
     ```
    */
-  async random() {
+  async random () {
     try {
       debug('Random: ' + this.endpoint + '/random/postcodes')
       let {
@@ -311,15 +311,15 @@ class PostcodesIO {
 
   /**
    * Validate
-   * 
+   *
    * @link: http://postcodes.io/docs#Postcode-Validation
-   * 
+   *
    * Usage:
    ``` javascript
     let result = await postcodes.validate('PO123AA')
    ```
    */
-  async validate() {
+  async validate () {
     try {
       if (typeof arguments[0] !== 'string') {
         return Promise.reject(
@@ -344,9 +344,9 @@ class PostcodesIO {
 
   /**
    * Nearest
-   * 
+   *
    * @link: http://postcodes.io/docs#Nearest-Postcode
-   * 
+   *
    * Usage:
    ``` javascript
     let result = await postcodes.nearest('PO123AA')
@@ -358,43 +358,43 @@ class PostcodesIO {
     })
    ```
    */
-  async nearest() {
+  async nearest () {
     try {
       switch (arguments.length) {
         case 1:
-          {
-            if (typeof arguments[0] !== 'string') {
-              return Promise.reject(
-                new Error('Invalid argument expecting (string) got (' + typeof arguments[0] + ')')
-              )
-            }
-            debug('Nearest: ' + this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/nearest')
+        {
+          if (typeof arguments[0] !== 'string') {
+            return Promise.reject(
+              new Error('Invalid argument expecting (string) got (' + typeof arguments[0] + ')')
+            )
+          }
+          debug('Nearest: ' + this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/nearest')
+          let {
+            data
+          } = await axios({
+            ...this.baseGetRequest,
+            url: this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/nearest'
+          })
+          return data
+        }
+        case 2:
+        {
+          if (typeof arguments[0] === 'string' && typeof arguments[1] === 'object') {
+            debug('Nearest: ' + this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/nearest', arguments)
             let {
               data
             } = await axios({
               ...this.baseGetRequest,
-              url: this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/nearest'
+              url: this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/nearest',
+              params: arguments[1]
             })
             return data
+          } else {
+            return Promise.reject(
+              new Error('Invalid argument expecting (string, object) got (' + typeof arguments[0] + ', ' + typeof arguments[1] + ')')
+            )
           }
-        case 2:
-          {
-            if (typeof arguments[0] === 'string' && typeof arguments[1] === 'object') {
-              debug('Nearest: ' + this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/nearest', arguments)
-              let {
-                data
-              } = await axios({
-                ...this.baseGetRequest,
-                url: this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/nearest',
-                params: arguments[1]
-              })
-              return data
-            } else {
-              return Promise.reject(
-                new Error('Invalid argument expecting (string, object) got (' + typeof arguments[0] + ', ' + typeof arguments[1] + ')')
-              )
-            }
-          }
+        }
         default:
           return Promise.reject(
             new Error('Invalid number of arguments')
@@ -410,9 +410,9 @@ class PostcodesIO {
 
   /**
    * Autocomplete
-   * 
+   *
    * @link: http://postcodes.io/docs#Postcode-Autocomplete
-   * 
+   *
    * Usage:
    ``` javascript
     let result = await postcodes.autocomplete('PO123AA')
@@ -423,43 +423,43 @@ class PostcodesIO {
     })
    ```
    */
-  async autocomplete() {
+  async autocomplete () {
     try {
       switch (arguments.length) {
         case 1:
-          {
-            if (typeof arguments[0] !== 'string') {
-              return Promise.reject(
-                new Error('Invalid argument expecting (string) got (' + typeof arguments[0] + ')')
-              )
-            }
-            debug('Autocomplete: ' + this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/autocomplete')
+        {
+          if (typeof arguments[0] !== 'string') {
+            return Promise.reject(
+              new Error('Invalid argument expecting (string) got (' + typeof arguments[0] + ')')
+            )
+          }
+          debug('Autocomplete: ' + this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/autocomplete')
+          let {
+            data
+          } = await axios({
+            ...this.baseGetRequest,
+            url: this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/autocomplete'
+          })
+          return data
+        }
+        case 2:
+        {
+          if (typeof arguments[0] === 'string' && typeof arguments[1] === 'object') {
+            debug('Autocomplete: ' + this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/autocomplete', arguments)
             let {
               data
             } = await axios({
               ...this.baseGetRequest,
-              url: this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/autocomplete'
+              url: this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/autocomplete',
+              params: arguments[1]
             })
             return data
+          } else {
+            return Promise.reject(
+              new Error('Invalid argument expecting (string, object) got (' + typeof arguments[0] + ', ' + typeof arguments[1] + ')')
+            )
           }
-        case 2:
-          {
-            if (typeof arguments[0] === 'string' && typeof arguments[1] === 'object') {
-              debug('Autocomplete: ' + this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/autocomplete', arguments)
-              let {
-                data
-              } = await axios({
-                ...this.baseGetRequest,
-                url: this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/autocomplete',
-                params: arguments[1]
-              })
-              return data
-            } else {
-              return Promise.reject(
-                new Error('Invalid argument expecting (string, object) got (' + typeof arguments[0] + ', ' + typeof arguments[1] + ')')
-              )
-            }
-          }
+        }
         default:
           return Promise.reject(
             new Error('Invalid number of arguments')
@@ -475,9 +475,9 @@ class PostcodesIO {
 
   /**
    * Query
-   * 
+   *
    * @link: http://postcodes.io/docs#Postcode-Query
-   * 
+   *
    * Usage:
    ``` javascript
     let result = await postcodes.query('PO123AA')
@@ -488,16 +488,31 @@ class PostcodesIO {
     })
    ```
    */
-  async query() {
+  async query () {
     try {
       switch (arguments.length) {
         case 1:
-          {
-            if (typeof arguments[0] !== 'string') {
-              return Promise.reject(
-                new Error('Invalid argument expecting (string) got (' + typeof arguments[0] + ')')
-              )
+        {
+          if (typeof arguments[0] !== 'string') {
+            return Promise.reject(
+              new Error('Invalid argument expecting (string) got (' + typeof arguments[0] + ')')
+            )
+          }
+          debug('Query: ' + this.endpoint + '/postcodes?q=' + encodeURIComponent(arguments[0]))
+          let {
+            data
+          } = await axios({
+            ...this.baseGetRequest,
+            url: this.endpoint + '/postcodes',
+            params: {
+              q: arguments[0]
             }
+          })
+          return data
+        }
+        case 2:
+        {
+          if (typeof arguments[0] === 'string' && typeof arguments[1] === 'object') {
             debug('Query: ' + this.endpoint + '/postcodes?q=' + encodeURIComponent(arguments[0]))
             let {
               data
@@ -505,32 +520,17 @@ class PostcodesIO {
               ...this.baseGetRequest,
               url: this.endpoint + '/postcodes',
               params: {
-                q: arguments[0]
+                q: arguments[0],
+                ...arguments[1]
               }
             })
             return data
+          } else {
+            return Promise.reject(
+              new Error('Invalid argument expecting (string, object) got (' + typeof arguments[0] + ', ' + typeof arguments[1] + ')')
+            )
           }
-        case 2:
-          {
-            if (typeof arguments[0] === 'string' && typeof arguments[1] === 'object') {
-              debug('Query: ' + this.endpoint + '/postcodes?q=' + encodeURIComponent(arguments[0]))
-              let {
-                data
-              } = await axios({
-                ...this.baseGetRequest,
-                url: this.endpoint + '/postcodes',
-                params: {
-                  q: arguments[0],
-                  ...arguments[1]
-                }
-              })
-              return data
-            } else {
-              return Promise.reject(
-                new Error('Invalid argument expecting (string, object) got (' + typeof arguments[0] + ', ' + typeof arguments[1] + ')')
-              )
-            }
-          }
+        }
         default:
           return Promise.reject(
             new Error('Invalid number of arguments')
@@ -546,15 +546,15 @@ class PostcodesIO {
 
   /**
    * Terminated
-   * 
+   *
    * @link: http://postcodes.io/docs#Terminated
-   * 
+   *
    * Usage:
    ``` javascript
     let result = await postcodes.terminated('PO123AA')
    ```
    */
-  async terminated() {
+  async terminated () {
     try {
       if (typeof arguments[0] !== 'string') {
         return Promise.reject(
@@ -579,9 +579,9 @@ class PostcodesIO {
 
   /**
    * Outcodes
-   * 
+   *
    * @link: http://postcodes.io/docs#Show-Outcode
-   * 
+   *
    * Usage:
    ``` javascript
     // lookup
@@ -607,92 +607,92 @@ class PostcodesIO {
     })
    ```
    */
-  async outcodes() {
+  async outcodes () {
     try {
       switch (arguments.length) {
         case 0:
-          {
+        {
+          return Promise.reject(
+            new Error(
+              'Invalid number of arguments'
+            )
+          )
+        }
+        case 1:
+        {
+          if (typeof arguments[0] !== 'string') {
             return Promise.reject(
               new Error(
-                'Invalid number of arguments'
+                'Invalid argument, expecting (string) got (' + typeof arguments[0] + ')'
               )
             )
           }
-        case 1:
-          {
-            if (typeof arguments[0] !== 'string') {
-              return Promise.reject(
-                new Error(
-                  'Invalid argument, expecting (string) got (' + typeof arguments[0] + ')'
-                )
-              )
-            }
-            debug('Outcodes: ' + this.endpoint + '/outcodes/' + encodeURIComponent(arguments[0]))
+          debug('Outcodes: ' + this.endpoint + '/outcodes/' + encodeURIComponent(arguments[0]))
+          let {
+            data
+          } = await axios({
+            ...this.baseGetRequest,
+            url: this.endpoint + '/outcodes/' + encodeURIComponent(arguments[0])
+          })
+          return data
+        }
+        case 2:
+        {
+          if (typeof arguments[0] === 'string' && (typeof arguments[1] === 'object' && !Array.isArray(arguments[1]))) {
+            debug('Outcodes: ' + this.endpoint + '/outcodes/' + encodeURIComponent(arguments[0]), arguments[1])
             let {
               data
             } = await axios({
               ...this.baseGetRequest,
-              url: this.endpoint + '/outcodes/' + encodeURIComponent(arguments[0])
+              url: this.endpoint + '/outcodes/' + encodeURIComponent(arguments[0]) + '/nearest',
+              params: arguments[1]
             })
             return data
-          }
-        case 2:
-          {
-            if (typeof arguments[0] === 'string' && (typeof arguments[1] === 'object' && !Array.isArray(arguments[1]))) {
-              debug('Outcodes: ' + this.endpoint + '/outcodes/' + encodeURIComponent(arguments[0]), arguments[1])
-              let {
-                data
-              } = await axios({
-                ...this.baseGetRequest,
-                url: this.endpoint + '/outcodes/' + encodeURIComponent(arguments[0]) + '/nearest',
-                params: arguments[1]
-              })
-              return data
-            } else if (typeof arguments[0] === 'number' && typeof arguments[1] === 'number') {
-              debug('Outcodes: ' + this.endpoint + '/outcodes?lat=' + encodeURIComponent(arguments[0]) + '?lat=' + encodeURIComponent(arguments[1]))
-              let {
-                data
-              } = await axios({
-                ...this.baseGetRequest,
-                url: this.endpoint + '/outcodes',
-                params: {
-                  lat: arguments[0],
-                  lon: arguments[1]
-                }
-              })
-              return data
-            } else {
-              return Promise.reject(
-                new Error(
-                  'Invalid arguments, expecting ([string|number], [object|number]) got (' + typeof arguments[0] + ', ' + typeof arguments[1] + ')'
-                )
+          } else if (typeof arguments[0] === 'number' && typeof arguments[1] === 'number') {
+            debug('Outcodes: ' + this.endpoint + '/outcodes?lat=' + encodeURIComponent(arguments[0]) + '?lat=' + encodeURIComponent(arguments[1]))
+            let {
+              data
+            } = await axios({
+              ...this.baseGetRequest,
+              url: this.endpoint + '/outcodes',
+              params: {
+                lat: arguments[0],
+                lon: arguments[1]
+              }
+            })
+            return data
+          } else {
+            return Promise.reject(
+              new Error(
+                'Invalid arguments, expecting ([string|number], [object|number]) got (' + typeof arguments[0] + ', ' + typeof arguments[1] + ')'
               )
-            }
+            )
           }
+        }
         case 3:
-          {
-            if (typeof arguments[0] === 'number' && typeof arguments[1] === 'number' && (typeof arguments[2] === 'object' && !Array.isArray(arguments[2]))) {
-              debug('Outcodes: ' + this.endpoint + '/outcodes?lat=' + encodeURIComponent(arguments[0]) + '?lat=' + encodeURIComponent(arguments[1]), arguments[2])
-              let {
-                data
-              } = await axios({
-                ...this.baseGetRequest,
-                url: this.endpoint + '/outcodes',
-                params: {
-                  lat: arguments[0],
-                  lon: arguments[1],
-                  ...arguments[2]
-                }
-              })
-              return data
-            } else {
-              return Promise.reject(
-                new Error(
-                  'Invalid arguments, expecting ([string|number], [object|number]) got (' + typeof arguments[0] + ', ' + typeof arguments[1] + ')'
-                )
+        {
+          if (typeof arguments[0] === 'number' && typeof arguments[1] === 'number' && (typeof arguments[2] === 'object' && !Array.isArray(arguments[2]))) {
+            debug('Outcodes: ' + this.endpoint + '/outcodes?lat=' + encodeURIComponent(arguments[0]) + '?lat=' + encodeURIComponent(arguments[1]), arguments[2])
+            let {
+              data
+            } = await axios({
+              ...this.baseGetRequest,
+              url: this.endpoint + '/outcodes',
+              params: {
+                lat: arguments[0],
+                lon: arguments[1],
+                ...arguments[2]
+              }
+            })
+            return data
+          } else {
+            return Promise.reject(
+              new Error(
+                'Invalid arguments, expecting ([string|number], [object|number]) got (' + typeof arguments[0] + ', ' + typeof arguments[1] + ')'
               )
-            }
+            )
           }
+        }
         default:
           return Promise.reject(
             new Error('Invalid number of arguments')
@@ -707,10 +707,10 @@ class PostcodesIO {
   }
 
   /**
-   * Outcodes
-   * 
-   * @link: http://postcodes.io/docs#Show-Outcode
-   * 
+   * Places
+   *
+   * @link: http://postcodes.io/docs#Place-Lookup
+   *
    * Usage:
    ``` javascript
     // lookup
@@ -725,74 +725,74 @@ class PostcodesIO {
     let result = await postcodes.places()
    ```
    */
-  async places() {
+  async places () {
     try {
       switch (arguments.length) {
         case 0:
-          {
-            debug('Places: ' + this.endpoint + '/random/places')
-            let {
-              data
-            } = await axios({
-              ...this.baseGetRequest,
-              url: this.endpoint + '/random/places'
-            })
-            return data
-          }
+        {
+          debug('Places: ' + this.endpoint + '/random/places')
+          let {
+            data
+          } = await axios({
+            ...this.baseGetRequest,
+            url: this.endpoint + '/random/places'
+          })
+          return data
+        }
         case 1:
-          {
-            if (typeof arguments[0] !== 'string') {
-              return Promise.reject(
-                new Error(
-                  'Invalid argument, expecting (string) got (' + typeof arguments[0] + ')'
-                )
+        {
+          if (typeof arguments[0] !== 'string') {
+            return Promise.reject(
+              new Error(
+                'Invalid argument, expecting (string) got (' + typeof arguments[0] + ')'
               )
-            }
-            debug('Places: ' + this.endpoint + '/places/' + encodeURIComponent(arguments[0]))
+            )
+          }
+          debug('Places: ' + this.endpoint + '/places/' + encodeURIComponent(arguments[0]))
+          let {
+            data
+          } = await axios({
+            ...this.baseGetRequest,
+            url: this.endpoint + '/places/' + encodeURIComponent(arguments[0])
+          })
+          return data
+        }
+        case 2:
+        {
+          if (typeof arguments[0] === 'string' && (typeof arguments[1] === 'object' && !Array.isArray(arguments[1]))) {
+            debug('Places: ' + this.endpoint + '/places?q=' + arguments[0], arguments[1])
             let {
               data
             } = await axios({
               ...this.baseGetRequest,
-              url: this.endpoint + '/places/' + encodeURIComponent(arguments[0])
+              url: this.endpoint + '/places',
+              params: {
+                q: arguments[0],
+                ...arguments[1]
+              }
             })
             return data
-          }
-        case 2:
-          {
-            if (typeof arguments[0] === 'string' && (typeof arguments[1] === 'object' && !Array.isArray(arguments[1]))) {
-              debug('Places: ' + this.endpoint + '/places?q=' + arguments[0], arguments[1])
-              let {
-                data
-              } = await axios({
-                ...this.baseGetRequest,
-                url: this.endpoint + '/places',
-                params: {
-                  q: arguments[0],
-                  ...arguments[1]
-                }
-              })
-              return data
-            } else if (typeof arguments[0] === 'number' && typeof arguments[1] === 'number') {
-              debug('Outcodes: ' + this.endpoint + '/outcodes?lat=' + encodeURIComponent(arguments[0]) + '?lat=' + encodeURIComponent(arguments[1]))
-              let {
-                data
-              } = await axios({
-                ...this.baseGetRequest,
-                url: this.endpoint + '/outcodes',
-                params: {
-                  lat: arguments[0],
-                  lon: arguments[1]
-                }
-              })
-              return data
-            } else {
-              return Promise.reject(
-                new Error(
-                  'Invalid arguments, expecting ([string|number], [object|number]) got (' + typeof arguments[0] + ', ' + typeof arguments[1] + ')'
-                )
+          } else if (typeof arguments[0] === 'number' && typeof arguments[1] === 'number') {
+            debug('Outcodes: ' + this.endpoint + '/outcodes?lat=' + encodeURIComponent(arguments[0]) + '?lat=' + encodeURIComponent(arguments[1]))
+            let {
+              data
+            } = await axios({
+              ...this.baseGetRequest,
+              url: this.endpoint + '/outcodes',
+              params: {
+                lat: arguments[0],
+                lon: arguments[1]
+              }
+            })
+            return data
+          } else {
+            return Promise.reject(
+              new Error(
+                'Invalid arguments, expecting ([string|number], [object|number]) got (' + typeof arguments[0] + ', ' + typeof arguments[1] + ')'
               )
-            }
+            )
           }
+        }
         default:
           return Promise.reject(
             new Error('Invalid number of arguments')
