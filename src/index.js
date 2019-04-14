@@ -87,7 +87,7 @@ class PostcodesIO {
         debug('Lookup multi: ' + JSON.stringify(postcode), this.endpoint + '/postcodes', params)
         let {
           data
-        } = await await axios({
+        } = await axios({
           ...this.basePostRequest,
           url: this.endpoint + '/postcodes',
           params: params,
@@ -131,7 +131,7 @@ class PostcodesIO {
         debug('Geo: ' + this.endpoint + '/postcodes', arguments)
         let {
           data
-        } = await await axios({
+        } = await axios({
           ...this.basePostRequest,
           url: this.endpoint + '/postcodes',
           data: {
@@ -144,7 +144,7 @@ class PostcodesIO {
           debug('Geo: ' + this.endpoint + '/postcodes', arguments)
           let {
             data
-          } = await await axios({
+          } = await axios({
             ...this.baseGetRequest,
             url: this.endpoint + '/postcodes',
             params: {
@@ -157,7 +157,7 @@ class PostcodesIO {
           debug('Geo: ' + this.endpoint + '/postcodes', arguments)
           let {
             data
-          } = await await axios({
+          } = await axios({
             ...this.basePostRequest,
             url: this.endpoint + '/postcodes',
             params: arguments[1],
@@ -178,7 +178,7 @@ class PostcodesIO {
           debug('Geo: ' + this.endpoint + '/postcodes', arguments)
           let {
             data
-          } = await await axios({
+          } = await axios({
             ...this.baseGetRequest,
             url: this.endpoint + '/postcodes',
             params: {
@@ -209,7 +209,7 @@ class PostcodesIO {
     debug('Random: ' + this.endpoint + '/random/postcodes')
     let {
       data
-    } = await await axios({
+    } = await axios({
       ...this.baseGetRequest,
       url: this.endpoint + '/random/postcodes'
     })
@@ -228,7 +228,7 @@ class PostcodesIO {
     debug('Validate: ' + this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/validate', arguments)
     let {
       data
-    } = await await axios({
+    } = await axios({
       ...this.baseGetRequest,
       url: this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/validate'
     })
@@ -249,7 +249,7 @@ class PostcodesIO {
         debug('Nearest: ' + this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/nearest')
         let {
           data
-        } = await await axios({
+        } = await axios({
           ...this.baseGetRequest,
           url: this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/nearest'
         })
@@ -259,7 +259,7 @@ class PostcodesIO {
           debug('Nearest: ' + this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/nearest', arguments)
           let {
             data
-          } = await await axios({
+          } = await axios({
             ...this.baseGetRequest,
             url: this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/nearest',
             params: arguments[1]
@@ -291,7 +291,7 @@ class PostcodesIO {
         debug('Autocomplete: ' + this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/autocomplete')
         let {
           data
-        } = await await axios({
+        } = await axios({
           ...this.baseGetRequest,
           url: this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/autocomplete'
         })
@@ -301,7 +301,7 @@ class PostcodesIO {
           debug('Nearest: ' + this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/autocomplete', arguments)
           let {
             data
-          } = await await axios({
+          } = await axios({
             ...this.baseGetRequest,
             url: this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/autocomplete',
             params: arguments[1]
