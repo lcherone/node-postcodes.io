@@ -13,7 +13,7 @@ jobs:
       id: test
       uses: lcherone/gh-actions/node-10-alpine@master
       env:
-       NODE_ENV: production
+       NODE_ENV: development
        PKG_MANAGER: npm
       with:
         command: 'run test'
