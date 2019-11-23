@@ -1,0 +1,19 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Test stage
+      uses: lcherone/gh-actions/node-10-alpine@master@master
+      env:
+       NODE_ENV: production
+       PKG_MANAGER: npm
+      with:
+        entrypoint: /bin/bash /entrypoint.sh
+        args: run test
