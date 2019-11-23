@@ -3,17 +3,17 @@ name: CI
 on: [push]
 
 jobs:
-  build:
-
+  test:
     runs-on: ubuntu-latest
-
+    name: Testing step
     steps:
-    - uses: actions/checkout@v1
-    - name: Test stage
-      uses: lcherone/gh-actions/node-10-alpine@master@master
+    - name: Run unit tests on github
+      id: test
+      uses: lcherone/gh-actions/node-10-alpine@master
       env:
        NODE_ENV: production
        PKG_MANAGER: npm
       with:
-        entrypoint: /bin/bash /entrypoint.sh
-        args: run test
+        command: 'npm run test'
+    - name: Get the output
+      run: echo "${{ steps.id.outputs.stdout }}"
