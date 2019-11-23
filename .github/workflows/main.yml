@@ -14,6 +14,6 @@ jobs:
        NODE_ENV: production
        PKG_MANAGER: npm
       with:
-        command: 'npm run test'
+        command: 'run test'
     - name: Get the output
-      run: echo "${{ steps.id.outputs.stdout }}"
+      run: echo "${{ steps.test.outputs.stdout }}"
