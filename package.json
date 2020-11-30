@@ -1,6 +1,6 @@
 {
     "name": "node-postcodes.io",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Postcodes.io - NodeJS Client/Wrapper",
     "main": "src/index.js",
     "scripts": {

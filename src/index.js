@@ -118,7 +118,7 @@ class PostcodesIO {
         )
       }
     } catch (e) {
-      return Promise.resolve(e.response ? e.response.data : null || {
+      return Promise.resolve((e.response ? e.response.data : null) || {
         status: 500,
         error: 'Unknown error'
       })
@@ -274,7 +274,7 @@ class PostcodesIO {
           )
       }
     } catch (e) {
-      return Promise.resolve(e.response ? e.response.data : null || {
+      return Promise.resolve((e.response ? e.response.data : null) || {
         status: 500,
         error: 'Unknown error'
       })
@@ -302,7 +302,7 @@ class PostcodesIO {
       })
       return data
     } catch (e) {
-      return Promise.resolve(e.response ? e.response.data : null || {
+      return Promise.resolve((e.response ? e.response.data : null) || {
         status: 500,
         error: 'Unknown error'
       })
@@ -335,7 +335,7 @@ class PostcodesIO {
       })
       return data
     } catch (e) {
-      return Promise.resolve(e.response ? e.response.data : null || {
+      return Promise.resolve((e.response ? e.response.data : null) || {
         status: 500,
         error: 'Unknown error'
       })
@@ -401,7 +401,7 @@ class PostcodesIO {
           )
       }
     } catch (e) {
-      return Promise.resolve(e.response ? e.response.data : null || {
+      return Promise.resolve((e.response ? e.response.data : null) || {
         status: 500,
         error: 'Unknown error'
       })
@@ -466,7 +466,7 @@ class PostcodesIO {
           )
       }
     } catch (e) {
-      return Promise.resolve(e.response ? e.response.data : null || {
+      return Promise.resolve((e.response ? e.response.data : null) || {
         status: 500,
         error: 'Unknown error'
       })
@@ -537,7 +537,7 @@ class PostcodesIO {
           )
       }
     } catch (e) {
-      return Promise.resolve(e.response ? e.response.data : null || {
+      return Promise.resolve((e.response ? e.response.data : null) || {
         status: 500,
         error: 'Unknown error'
       })
@@ -570,7 +570,7 @@ class PostcodesIO {
       })
       return data
     } catch (e) {
-      return Promise.resolve(e.response ? e.response.data : null || {
+      return Promise.resolve((e.response ? e.response.data : null) || {
         status: 500,
         error: 'Unknown error'
       })
@@ -699,7 +699,7 @@ class PostcodesIO {
           )
       }
     } catch (e) {
-      return Promise.resolve(e.response ? e.response.data : null || {
+      return Promise.resolve((e.response ? e.response.data : null) || {
         status: 500,
         error: 'Unknown error'
       })
@@ -799,7 +799,7 @@ class PostcodesIO {
           )
       }
     } catch (e) {
-      return Promise.resolve(e.response ? e.response.data : null || {
+      return Promise.resolve((e.response ? e.response.data : null) || {
         status: 500,
         error: 'Unknown error'
       })
