@@ -6,7 +6,7 @@
 
 An easy to use [postcodes.io](http://postcodes.io/) wrapper for NodeJS.
 
-## Install
+## :arrow_forward: Install
 
 Install the package with npm:
 
@@ -14,7 +14,7 @@ Install the package with npm:
 $ npm i node-postcodes.io
 ```
 
-## Usage
+## :clipboard: Usage
 
 ``` javascript
 const postcodes = require('node-postcodes.io')
@@ -201,7 +201,7 @@ let result = await postcodes.places('Ryde', {
 let result = await postcodes.places()
 ```
 
-## Testing
+## :lock: Testing
 
 Can see test results @ https://travis-ci.org/lcherone/node-postcodes.io, if you want to run them locally, your need install [mocha](https://mochajs.org), then run:
 
@@ -209,6 +209,6 @@ Can see test results @ https://travis-ci.org/lcherone/node-postcodes.io, if you 
 $ npm test
 ```
 
-## License
+## :copyright: License
 
 The MIT License (MIT). Please see [License File](https://github.com/lcherone/node-postcodes.io/blob/master/LICENSE) for more information.
