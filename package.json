@@ -1,12 +1,13 @@
 {
     "name": "node-postcodes.io",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Postcodes.io - NodeJS Client/Wrapper",
     "main": "src/index.js",
     "scripts": {
-        "test": "standard --fix && standard && cd test && ../node_modules/mocha/bin/mocha --exit --check-leaks --slow 500ms"
+        "test": "standard --fix && standard && cd test && ../node_modules/mocha/bin/mocha --exit --check-leaks --slow 500ms",
+        "postinstall": "node tasks/postinstall.js || exit 0"
     },
-    "author": "Lawrence Cherone",
+    "author": "Lawrence Cherone (https://cherone.co.uk)",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -41,5 +42,9 @@
         "mocha": "^5.1.1",
         "should": "^13.2.3",
         "standard": "^11.0.1"
+    },
+    "funding": {
+        "type": "paypal",
+        "url": "https://paypal.me/lcherone"
     }
 }
