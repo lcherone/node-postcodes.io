@@ -1,6 +1,6 @@
 {
     "name": "node-postcodes.io",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Postcodes.io - NodeJS Client/Wrapper",
     "main": "src/index.js",
     "scripts": {
@@ -35,13 +35,13 @@
         ]
     },
     "dependencies": {
-        "axios": "^0.18.0",
-        "debug": "^3.1.0"
+        "axios": "^0.21.1",
+        "debug": "^4.3.1"
     },
     "devDependencies": {
-        "mocha": "^5.1.1",
+        "mocha": "^8.4.0",
         "should": "^13.2.3",
-        "standard": "^11.0.1"
+        "standard": "^16.0.3"
     },
     "funding": {
         "type": "paypal",

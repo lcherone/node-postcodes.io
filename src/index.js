@@ -91,7 +91,7 @@ class PostcodesIO {
     try {
       if (typeof postcode === 'string') {
         debug('Lookup: ' + postcode, this.endpoint + '/postcodes/' + postcode, params)
-        let {
+        const {
           data
         } = await axios({
           ...this.baseGetRequest,
@@ -101,7 +101,7 @@ class PostcodesIO {
         return data
       } else if (Array.isArray(postcode)) {
         debug('Lookup multi: ' + JSON.stringify(postcode), this.endpoint + '/postcodes', params)
-        let {
+        const {
           data
         } = await axios({
           ...this.basePostRequest,
@@ -197,7 +197,7 @@ class PostcodesIO {
             )
           }
           debug('Geo: ' + this.endpoint + '/postcodes', arguments)
-          let {
+          const {
             data
           } = await axios({
             ...this.basePostRequest,
@@ -212,7 +212,7 @@ class PostcodesIO {
         {
           if (typeof arguments[0] === 'number' && typeof arguments[1] === 'number') {
             debug('Geo: ' + this.endpoint + '/postcodes', arguments)
-            let {
+            const {
               data
             } = await axios({
               ...this.baseGetRequest,
@@ -225,7 +225,7 @@ class PostcodesIO {
             return data
           } else if (Array.isArray(arguments[0]) && typeof arguments[1] === 'object') {
             debug('Geo: ' + this.endpoint + '/postcodes', arguments)
-            let {
+            const {
               data
             } = await axios({
               ...this.basePostRequest,
@@ -248,7 +248,7 @@ class PostcodesIO {
         {
           if (typeof arguments[0] === 'number' && typeof arguments[1] === 'number' && (typeof arguments[2] === 'object' && !Array.isArray(arguments[2]))) {
             debug('Geo: ' + this.endpoint + '/postcodes', arguments)
-            let {
+            const {
               data
             } = await axios({
               ...this.baseGetRequest,
@@ -294,7 +294,7 @@ class PostcodesIO {
   async random () {
     try {
       debug('Random: ' + this.endpoint + '/random/postcodes')
-      let {
+      const {
         data
       } = await axios({
         ...this.baseGetRequest,
@@ -327,7 +327,7 @@ class PostcodesIO {
         )
       }
       debug('Validate: ' + this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/validate', arguments)
-      let {
+      const {
         data
       } = await axios({
         ...this.baseGetRequest,
@@ -369,7 +369,7 @@ class PostcodesIO {
             )
           }
           debug('Nearest: ' + this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/nearest')
-          let {
+          const {
             data
           } = await axios({
             ...this.baseGetRequest,
@@ -381,7 +381,7 @@ class PostcodesIO {
         {
           if (typeof arguments[0] === 'string' && typeof arguments[1] === 'object') {
             debug('Nearest: ' + this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/nearest', arguments)
-            let {
+            const {
               data
             } = await axios({
               ...this.baseGetRequest,
@@ -434,7 +434,7 @@ class PostcodesIO {
             )
           }
           debug('Autocomplete: ' + this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/autocomplete')
-          let {
+          const {
             data
           } = await axios({
             ...this.baseGetRequest,
@@ -446,7 +446,7 @@ class PostcodesIO {
         {
           if (typeof arguments[0] === 'string' && typeof arguments[1] === 'object') {
             debug('Autocomplete: ' + this.endpoint + '/postcodes/' + encodeURIComponent(arguments[0]) + '/autocomplete', arguments)
-            let {
+            const {
               data
             } = await axios({
               ...this.baseGetRequest,
@@ -499,7 +499,7 @@ class PostcodesIO {
             )
           }
           debug('Query: ' + this.endpoint + '/postcodes?q=' + encodeURIComponent(arguments[0]))
-          let {
+          const {
             data
           } = await axios({
             ...this.baseGetRequest,
@@ -514,7 +514,7 @@ class PostcodesIO {
         {
           if (typeof arguments[0] === 'string' && typeof arguments[1] === 'object') {
             debug('Query: ' + this.endpoint + '/postcodes?q=' + encodeURIComponent(arguments[0]))
-            let {
+            const {
               data
             } = await axios({
               ...this.baseGetRequest,
@@ -562,7 +562,7 @@ class PostcodesIO {
         )
       }
       debug('Terminated postcode: ' + this.endpoint + '/terminated_postcodes/' + encodeURIComponent(arguments[0]))
-      let {
+      const {
         data
       } = await axios({
         ...this.baseGetRequest,
@@ -628,7 +628,7 @@ class PostcodesIO {
             )
           }
           debug('Outcodes: ' + this.endpoint + '/outcodes/' + encodeURIComponent(arguments[0]))
-          let {
+          const {
             data
           } = await axios({
             ...this.baseGetRequest,
@@ -640,7 +640,7 @@ class PostcodesIO {
         {
           if (typeof arguments[0] === 'string' && (typeof arguments[1] === 'object' && !Array.isArray(arguments[1]))) {
             debug('Outcodes: ' + this.endpoint + '/outcodes/' + encodeURIComponent(arguments[0]), arguments[1])
-            let {
+            const {
               data
             } = await axios({
               ...this.baseGetRequest,
@@ -650,7 +650,7 @@ class PostcodesIO {
             return data
           } else if (typeof arguments[0] === 'number' && typeof arguments[1] === 'number') {
             debug('Outcodes: ' + this.endpoint + '/outcodes?lat=' + encodeURIComponent(arguments[0]) + '?lat=' + encodeURIComponent(arguments[1]))
-            let {
+            const {
               data
             } = await axios({
               ...this.baseGetRequest,
@@ -673,7 +673,7 @@ class PostcodesIO {
         {
           if (typeof arguments[0] === 'number' && typeof arguments[1] === 'number' && (typeof arguments[2] === 'object' && !Array.isArray(arguments[2]))) {
             debug('Outcodes: ' + this.endpoint + '/outcodes?lat=' + encodeURIComponent(arguments[0]) + '?lat=' + encodeURIComponent(arguments[1]), arguments[2])
-            let {
+            const {
               data
             } = await axios({
               ...this.baseGetRequest,
@@ -731,7 +731,7 @@ class PostcodesIO {
         case 0:
         {
           debug('Places: ' + this.endpoint + '/random/places')
-          let {
+          const {
             data
           } = await axios({
             ...this.baseGetRequest,
@@ -749,7 +749,7 @@ class PostcodesIO {
             )
           }
           debug('Places: ' + this.endpoint + '/places/' + encodeURIComponent(arguments[0]))
-          let {
+          const {
             data
           } = await axios({
             ...this.baseGetRequest,
@@ -761,7 +761,7 @@ class PostcodesIO {
         {
           if (typeof arguments[0] === 'string' && (typeof arguments[1] === 'object' && !Array.isArray(arguments[1]))) {
             debug('Places: ' + this.endpoint + '/places?q=' + arguments[0], arguments[1])
-            let {
+            const {
               data
             } = await axios({
               ...this.baseGetRequest,
@@ -774,7 +774,7 @@ class PostcodesIO {
             return data
           } else if (typeof arguments[0] === 'number' && typeof arguments[1] === 'number') {
             debug('Outcodes: ' + this.endpoint + '/outcodes?lat=' + encodeURIComponent(arguments[0]) + '?lat=' + encodeURIComponent(arguments[1]))
-            let {
+            const {
               data
             } = await axios({
               ...this.baseGetRequest,
